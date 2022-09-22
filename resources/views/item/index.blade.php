@@ -24,19 +24,19 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>名前</th>
-                                <th>種別</th>
-                                <th>詳細</th>
+                                <th>JAN</th>
+                                <th>商品名</th>
+                                <th>メーカー名</th>
+                                <th>特徴</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->JAN }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->detail }}</td>
+                                    <td>{{ $item->maker }}</td>
+                                    <td>{{ $item->feature }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

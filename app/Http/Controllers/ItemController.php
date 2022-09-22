@@ -24,11 +24,7 @@ class ItemController extends Controller
     public function index()
     {
         // 商品一覧取得
-        $items = Item
-            ::where('items.status', 'active')
-            ->select()
-            ->get();
-
+        $items = Item::all();
         return view('item.index', compact('items'));
     }
 
