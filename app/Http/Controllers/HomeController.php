@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class HomeController extends Controller
 {
@@ -29,5 +30,15 @@ class HomeController extends Controller
     public function item()
     {
         return view('item');
+    }
+
+    public function class($class11,$class21)
+    {
+        $items = Item::where('class11',$class11)
+            ->where('class21',$class21)
+            ->get();
+        return view('item.index', [
+            'items' => $items,
+        ]);
     }
 }
