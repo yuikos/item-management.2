@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>商品一覧</h1>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('content')
@@ -45,10 +46,24 @@
             </div>
         </div>
     </div>
-@stop
+    @if (Auth::check())
+    @if ($like)
+    <form action="{{action('LikeController@destroy',$like->id)}}" method="POST" class="mb-4" >
+    <input type="hidden" name="like_id" value="{{$like->id}}">
+    @csrf
+    @method('DELETE')
+        <button type="submit">
+          ブックマーク解除
+        </button>
+    </form>
+    @else
+    <form action="{{action('LikeController@store')}}" method="POST" class="mb-4" >
+    @csrf
+    <input type="hidden" name="like_id" value="{{$like->id}}">
+        <button type="submit">
+         ブックマーク
+        </button>
+    </form>
 
-@section('css')
-@stop
-
-@section('js')
-@stop
+    @endif
+  @endif

@@ -33,4 +33,9 @@ class Item extends Model
      */
     protected $casts = [
     ];
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }
