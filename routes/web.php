@@ -21,7 +21,9 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/item/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'class']);
+Route::get('/csv/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'postCSV']);
 Route::post('/like', [App\Http\Controllers\LikeController::class, 'like']);
+
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);

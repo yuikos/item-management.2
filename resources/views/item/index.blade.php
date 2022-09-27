@@ -21,49 +21,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>JAN</th>
-                                <th>商品名</th>
-                                <th>メーカー名</th>
-                                <th>特徴</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $item)
+                <form action="{{ url('/csv/'.$class11.'/'.$class21) }}" method="get">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
                                 <tr>
-                                    <td>{{ $item->JAN }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->maker }}</td>
-                                    <td>{{ $item->feature }}</td>
+                                    <th>JAN</th>
+                                    <th>商品名</th>
+                                    <th>メーカー名</th>
+                                    <th>特徴</th>
+                                    <th>いいね数</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($items as $item)
+                                    <tr>
+                                        <td>{{ $item->JAN }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->maker }}</td>
+                                        <td>{{ $item->feature }}</td>
+                                        <td>{{$item->likes->count()}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit">CSV出力</button>
+                </form>
             </div>
         </div>
     </div>
-    @if (Auth::check())
-    @if ($like)
-    <form action="{{action('LikeController@destroy',$like->id)}}" method="POST" class="mb-4" >
-    <input type="hidden" name="like_id" value="{{$like->id}}">
-    @csrf
-    @method('DELETE')
-        <button type="submit">
-          ブックマーク解除
-        </button>
-    </form>
-    @else
-    <form action="{{action('LikeController@store')}}" method="POST" class="mb-4" >
-    @csrf
-    <input type="hidden" name="like_id" value="{{$like->id}}">
-        <button type="submit">
-         ブックマーク
-        </button>
-    </form>
-
-    @endif
-  @endif
+@stop
