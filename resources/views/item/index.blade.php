@@ -26,21 +26,36 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>いいね</th>
                                     <th>JAN</th>
                                     <th>商品名</th>
                                     <th>メーカー名</th>
                                     <th>特徴</th>
-                                    <th>いいね数</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($items as $item)
                                     <tr>
-                                        <td>{{ $item->JAN }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->maker }}</td>
-                                        <td>{{ $item->feature }}</td>
-                                        <td>{{$item->likes->count()}}</td>
+                                        @if($favorites)
+                                            <div class="col-md-3">
+                                            <form action="{{ url('/favorite') }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                                            </form>
+                                            </div>
+                                        @else
+                                            <div class="col-md-3">
+                                            <form action="{{ url('/unfavorite') }}" method="POST">
+                                                @csrf
+                                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                                            </form>
+                                            </div>
+                                        @endif
+                                        <td class="col-xs-2">{{ $item->favorites}}</td>
+                                        <td class="col-xs-2">{{ $item->JAN }}</td>
+                                        <td class="col-xs-2">{{ $item->name }}</td>
+                                        <td class="col-xs-2">{{ $item->maker }}</td>
+                                        <td class="col-xs-2">{{ $item->feature }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

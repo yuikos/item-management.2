@@ -24,6 +24,7 @@ class CreateItemsTable extends Migration
             $table->string('name', 100)->index();
             $table->integer('JAN');
             $table->string('feature')->nullable();
+            $table->integer('likes')->nullable();
             $table->timestamps();
         });
     }
