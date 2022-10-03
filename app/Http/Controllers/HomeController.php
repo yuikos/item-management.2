@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Favorite;
+use App\Models\Item_users;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -40,9 +40,9 @@ class HomeController extends Controller
             ->where('class21',$class21)
             ->get();
 
-        $favorites = Item::where('favorites')
-                    ->get();
-        
+        $favorites = Item::where('favorites');
+
+       
         return view('item.index', [
             'class11' => $class11,
             'class21' => $class21,
@@ -50,8 +50,6 @@ class HomeController extends Controller
             'favorites' => $favorites,
         ]);
     }
-
-
 
     /**
      * csv出力
@@ -99,6 +97,18 @@ class HomeController extends Controller
 
         ]);
    }
+
+   public function detail($item_id)
+    {   
+        $item = Item::find($item_id);
+        
+        $favorites = Item::where('favorites');
+
+        return view('item.detail', [
+            'item' => $item,
+            'favorites' => $favorites,
+        ]);
+    }
 
 
 }

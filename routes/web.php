@@ -21,9 +21,11 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/item/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'class'])->name("class");
+Route::get('/detail/{id}', [App\Http\Controllers\HomeController::class, 'detail'])->name("detail");
 Route::get('/csv/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'postCSV']);
-Route::post('/favorite', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
-Route::post('/unfavorite', [App\Http\Controllers\FavoriteController::class, 'destrpy'])->name('unfavorite');
+Route::post('/favorite/{id}', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
+Route::post('/unfavorite/{id}', [App\Http\Controllers\FavoriteController::class, 'unfavorite'])->name('unfavorite');
+
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);

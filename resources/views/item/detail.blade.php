@@ -21,7 +21,6 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ url('/csv/'.$class11.'/'.$class21) }}" method="get">
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -35,21 +34,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($items as $item)
                                     <tr>
-                                        <td><a href="{{ url('/detail/'.$item->id) }}">詳細</a></td>
+                                        <td>
+                                            @if($favorites)
+                                                <div class="col-md-3">
+                                                <form action="{{ url('/unfavorite/'.$item->id) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                                                </form>
+                                                </div>
+                                            @else
+                                                <div class="col-md-3">
+                                                <form action="{{ url('/favorite/'.$item->id) }}" method="POST">
+                                                    @csrf
+                                                    <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                                                </form>
+                                                </div>
+                                            @endif
+                                        </td>
                                         <td>{{ $item->favorites}}</td>
                                         <td>{{ $item->JAN }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->maker }}</td>
                                         <td>{!! nl2br(htmlspecialchars($item->feature)) !!}</td>
                                     </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit">CSV出力</button>
-                </form>
             </div>
         </div>
     </div>

@@ -3,29 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Item;
 
 class FavoriteController extends Controller
 {
     //
-    public function favorite(Request $request)
+    public function favorite($item_id)
     {
+        $user = Auth::user();
+        $user->items()->sync($item_id);
 
-        $favorite = new Favorite;
-        $favorite->item_id = $request->item_id;
-        $favorite->user_id = Auth::user()->id;
-        $favorite->save();
-
-        return redirect()->route('class');
+        return redirect()->route('detail',$item_id);
     }
 
-    public function destroy(Request $request, $id) {
-        $favorite=Favorite::findOrFail($id);
+    public function unfavorite($item_id)
+     {
+        $user = Auth::user();
 
-        $favorite->$favorite()->delete();
+        $user->items()->sync($item_id);
 
-        return redirect()->route('class');
+        return redirect()->route('detail',$item_id);
     }
 }
 
