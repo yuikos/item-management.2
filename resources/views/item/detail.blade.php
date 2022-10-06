@@ -36,23 +36,23 @@
                             <tbody>
                                     <tr>
                                         <td>
-                                            @if($favorites)
+                                            @if($like_number)
                                                 <div class="col-md-3">
-                                                <form action="{{ url('/unfavorite/'.$item->id) }}" method="POST">
+                                                <form action="{{ url('/unlike/'.$item->id) }}" method="POST">
                                                     @csrf
                                                     <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
                                                 </form>
                                                 </div>
                                             @else
                                                 <div class="col-md-3">
-                                                <form action="{{ url('/favorite/'.$item->id) }}" method="POST">
+                                                <form action="{{ url('/like/'.$item->id) }}" method="POST">
                                                     @csrf
                                                     <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
                                                 </form>
                                                 </div>
                                             @endif
                                         </td>
-                                        <td>{{ $item->favorites}}</td>
+                                        <td>{{ $like_number }}</td>
                                         <td>{{ $item->JAN }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->maker }}</td>

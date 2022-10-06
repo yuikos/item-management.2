@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Item_users;
+use App\Models\Like;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -39,15 +40,19 @@ class HomeController extends Controller
         $items = Item::where('class11',$class11)
             ->where('class21',$class21)
             ->get();
+        
+        foreach($items as $item){
+            // $item_id[]=$item->id;
+            $item['like_number'] = Like::getCountLike($item->id);
+        }
+        // dd($item_id);
+        // $like_number = Like::getCountLike($item_id);
 
-        $favorites = Item::where('favorites');
-
-       
         return view('item.index', [
             'class11' => $class11,
             'class21' => $class21,
             'items' => $items,
-            'favorites' => $favorites,
+            // 'like_number'=>$like_number,
         ]);
     }
 
@@ -101,12 +106,13 @@ class HomeController extends Controller
    public function detail($item_id)
     {   
         $item = Item::find($item_id);
-        
-        $favorites = Item::where('favorites');
+
+        $this->likes = new Like();
+        $like_number = Like::getCountLike($item_id);
 
         return view('item.detail', [
             'item' => $item,
-            'favorites' => $favorites,
+            'like_number'=>$like_number,
         ]);
     }
 

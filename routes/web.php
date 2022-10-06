@@ -23,8 +23,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/item/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'class'])->name("class");
 Route::get('/detail/{id}', [App\Http\Controllers\HomeController::class, 'detail'])->name("detail");
 Route::get('/csv/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'postCSV']);
-Route::post('/favorite/{id}', [App\Http\Controllers\FavoriteController::class, 'favorite'])->name('favorite');
-Route::post('/unfavorite/{id}', [App\Http\Controllers\FavoriteController::class, 'unfavorite'])->name('unfavorite');
+Route::post('/like/{id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like');
+Route::post('/unlike/{id}', [App\Http\Controllers\LikeController::class, 'unlike'])->name('unlike');
+Route::get('/mypage/{id}', [App\Http\Controllers\MypageController::class, 'mypage'])->name("mypage");
 
 
 Route::prefix('items')->group(function () {
