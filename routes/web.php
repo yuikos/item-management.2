@@ -23,10 +23,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/item/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'class'])->name("class");
 Route::get('/detail/{id}', [App\Http\Controllers\HomeController::class, 'detail'])->name("detail");
 Route::get('/csv/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'postCSV']);
+
 Route::post('/like/{id}', [App\Http\Controllers\LikeController::class, 'like'])->name('like');
 Route::post('/unlike/{id}', [App\Http\Controllers\LikeController::class, 'unlike'])->name('unlike');
-Route::get('/mypage/{id}', [App\Http\Controllers\MypageController::class, 'mypage'])->name("mypage");
 
+Route::get('/mypage', [App\Http\Controllers\MypageController::class, 'mypage'])->name("mypage");
+Route::get('/mycsv', [App\Http\Controllers\MypageController::class, 'mypageCSV']);
+
+Route::get('/rank', [App\Http\Controllers\RankController::class, 'rank'])->name("rank");
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);

@@ -45,9 +45,7 @@ class HomeController extends Controller
             // $item_id[]=$item->id;
             $item['like_number'] = Like::getCountLike($item->id);
         }
-        // dd($item_id);
-        // $like_number = Like::getCountLike($item_id);
-
+       
         return view('item.index', [
             'class11' => $class11,
             'class21' => $class21,
@@ -116,5 +114,8 @@ class HomeController extends Controller
         ]);
     }
 
-
+    public function rank()
+    {   
+        
+    }
 }

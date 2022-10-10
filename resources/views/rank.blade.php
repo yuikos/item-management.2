@@ -3,7 +3,7 @@
 @section('title', 'My Page')
 
 @section('content_header')
-    <h1>My Page</h1>
+    <h1>Ranking</h1>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">お気に入り一覧</h3>
+                    <h3 class="card-title">"いいね"ランキング</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
@@ -25,7 +25,7 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>順位</th>
                                         <th>いいね数</th>
                                         <th>JAN</th>
                                         <th>商品名</th>
@@ -36,29 +36,12 @@
                                 <tbody>
                                     @foreach ($items as $item)
                                         <tr>
-                                            <td>
-                                                {{-- @dd($likes); --}}
-                                                @if($likes_number[$item->id])
-                                                    <div class="col-md-3">
-                                                    <form action="{{ url('/unlike/'.$item->id) }}" method="POST">
-                                                        @csrf
-                                                        <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
-                                                    </form>
-                                                    </div>
-                                                @else
-                                                    <div class="col-md-3">
-                                                    <form action="{{ url('/like/'.$item->id) }}" method="POST">
-                                                        @csrf
-                                                        <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-                                                    </form>
-                                                    </div>
-                                                @endif
-                                            </td>
+                                            <td>{{ $rank[$item->id] }}</td>
                                             <td>{{ $likes_number[$item->id] }}</td> 
                                             <td>{{ $item->JAN }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->maker }}</td>
-                                            <td>{!! nl2br(htmlspecialchars($item->feature)) !!}</td>
+                                            <td>{{ $item->feature }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

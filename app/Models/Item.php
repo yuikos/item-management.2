@@ -36,11 +36,9 @@ class Item extends Model
     protected $casts = [
     ];
 
-    // public function getCountLike()
-    // {
-    //     return DB::table('likes')
-    //             ->where('item_id',$this->id)
-    //             ->count();
-    // }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
 }

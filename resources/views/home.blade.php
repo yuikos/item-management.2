@@ -37,7 +37,7 @@
     <button type="button" class="btn btn-secondary btn-lg class2">麺類</button>
     <button type="button" class="btn btn-secondary btn-lg class2">嗜好飲料</button>
 
-
+    
 @stop
 
 @section('css')

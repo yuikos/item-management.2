@@ -25,8 +25,8 @@ class ItemController extends Controller
     {
         // 商品一覧取得
         $items = Item::all();
-        $favorites = Item::with('users')->get();
-        return view('item.index', compact('items'));
+        // $favorites = Item::with('users')->get();
+        return view('item.home', compact('items'));
 
     }
 

@@ -19,4 +19,9 @@ class like extends Model
                 ->count();
     }
 
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
 }
