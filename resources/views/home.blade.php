@@ -10,7 +10,7 @@
     <p>Welcome to this beautiful admin panel.</p>
     <button type="button" class="btn btn-secondary btn-lg class0">”カテゴリ”から選ぶ</button>
     <button type="button" class="btn btn-secondary btn-lg class0">”メーカー”から選ぶ</button>
-    <button type="button" class="btn btn-secondary btn-lg class0">”キーワード”から選ぶ</button>
+    <a href="{{url('search')}}" class="btn btn-secondary btn-lg">”キーワード”から選ぶ</a>
     <br>
     <button type="button" class="btn btn-secondary btn-lg class1 jyoon">常温加工</button>
     <button type="button" class="btn btn-secondary btn-lg class1 child">冷凍</button>

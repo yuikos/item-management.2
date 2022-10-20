@@ -32,6 +32,8 @@ Route::get('/mycsv', [App\Http\Controllers\MypageController::class, 'mypageCSV']
 
 Route::get('/rank', [App\Http\Controllers\RankController::class, 'rank'])->name("rank");
 
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'search']);
+
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
     Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);

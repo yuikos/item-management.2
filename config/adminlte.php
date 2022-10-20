@@ -240,6 +240,11 @@ return [
             'url'  => 'rank',
             'icon' => 'fas fa-crown',
         ],
+        [
+            'text' => '”キーワード”ランキング',
+            'url'  => 'keyword',
+            'icon' => 'fas fa-crown',
+        ],
 
         // AdminLTEデフォルト
         /*

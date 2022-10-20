@@ -25,7 +25,6 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th>いいね数</th>
                                         <th>JAN</th>
                                         <th>商品名</th>
