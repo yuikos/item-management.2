@@ -13,33 +13,25 @@
         <div class="card">
             <div class="card-header">
                 <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
-                    <form class="form-horizontal find" action = "{{ url('search') }}" method="post"  class="form-horizontal">
+                    <form action="{{ url('/search') }} class="form-horizontal find" method="get"  class="form-horizontal">
                         @csrf
-                        {{-- <select class="form-control" name="gender">
-                            <option disabled selected>大分類を選択してください</option>
-                            <option value="jyoon">常温加工</option>
-                            <option value="child">冷凍・チルド</option>
-                            <option value="sweet">菓子</option>
-                            <option value="liquor">酒類</option>
-                        </select> --}}
-                        <select class="form-control" name="gender">
-                            <option selected="selected" value="">選択してください</option>
-                            @foreach(config('class11') as $class1 => $class11)
-                              <option value="{{ $class1 }}" >
-                                {{ $class11['label'] }}
-                              </option>
-                            @endforeach
+                        <select id="class11" name='class11' class='form-control flex-items' onChange="pickclass2();">
+                            <option value=''>大分類を選んでください</option>
+                            <option value='1'>常温加工</option>
+                            <option value='2'>冷凍・チルド</option>
+                            <option value='3'>酒類</option>
+                            <option value='4'>菓子</option>
+                         </select>
+                        <select id="category" name="category" class='form-control mr-2 flex-items'>
+                           <option value="">中分類を選んでください</option>
+                               @foreach($categorys as $category)
+                                   <option value="{{ $item->class2 }}">{{ $item->class2 }}</option>
+                               @endforeach
                         </select>
-                        <select class="form-control" name="gender">
-                            <option selected="selected" value="">選択してください</option>
-                            @foreach(config('class21') as $class2 => $class21)
-                              <option value="{{ $class2 }}" >
-                                {{ $class21['label'] }}
-                              </option>
-                            @endforeach
-                        </select>
-                        <p><input type="text" name="keyword" value="{{$keyword}}"></p>
-                        <p><input type="submit" value="検索"></p>
+                        <div class="form-group">
+                            <input type="text" name="key"  class="form-control" placeholder="キーワードを入力">
+                        </div>
+                        <input type="submit" value='探す' class='btn btn-success flex-items'>
                     </form>
                 </div>
                 <div class="items">
@@ -72,7 +64,7 @@
        
  @endsection
 
-@section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/search.css') }}">        
+
+@section('js')
+    <script src="js/search.js"></script>
 @stop
