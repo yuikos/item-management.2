@@ -13,21 +13,24 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $user_id = Auth::id();
-        $items = Item::All();
-
-        $class11 = $request->value;
+        $class11 = $request->class11;
+        $class21 = $request->category;
+        $search_word = $request->key;
         $categorys = Item::where('class11',$class11)->pluck('class2');
 
-        dd($request);
+        if (!empty($search_word))
+        {
+            $items = Item::where('class11','=',$class11)
+                    ->where('class2','=',$class21)
+                    ->where('feature', 'like', '%' . $search_word . '%')
+                    ->get();
+            $keyword = new Keyword();
+            $keyword->keyword = $request->key;
+            $keyword->user_id = Auth::id();
+            $keyword->save();
 
-        $key = new Keyword();
-        $key->keyword = $request->key;
-        $key->user_id = $user_id;
-        $key->save();
-
-        if (!empty($key)) {
-            $items->where('feature', 'like', '%' . $key . '%');
+        }else{
+            $items = Item::All();
         }
         
         return view('search', [
@@ -37,10 +40,11 @@ class SearchController extends Controller
         ]);
     }
 
+
     public function ajax(Request $request)
     {
         header('Content-type:application/json;charset=utf-8');
-        dd(ajax);
+        // dd(ajax);
 
         $class11 = $request->value;
         
@@ -48,6 +52,12 @@ class SearchController extends Controller
                     ->groupBy('class2')
                     ->pluck('class2');
         return response()->json($categorys);
+    }
+
+    public function rank()
+    {
+        $keyword = Keyword::All();
+        
     }
 
     

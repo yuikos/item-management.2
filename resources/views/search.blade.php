@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
-                    <form action="{{ url('/search') }} class="form-horizontal find" method="get"  class="form-horizontal">
+                    <form action="{{ url('/search') }}" class="form-horizontal find" method="get"  class="form-horizontal">
                         @csrf
                         <select id="class11" name='class11' class='form-control flex-items' onChange="pickclass2();">
                             <option value=''>大分類を選んでください</option>
@@ -25,7 +25,7 @@
                         <select id="category" name="category" class='form-control mr-2 flex-items'>
                            <option value="">中分類を選んでください</option>
                                @foreach($categorys as $category)
-                                   <option value="{{ $item->class2 }}">{{ $item->class2 }}</option>
+                                   <option value="{{ $category }}">{{ $category }}</option>
                                @endforeach
                         </select>
                         <div class="form-group">

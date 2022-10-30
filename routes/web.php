@@ -33,7 +33,8 @@ Route::get('/mycsv', [App\Http\Controllers\MypageController::class, 'mypageCSV']
 Route::get('/rank', [App\Http\Controllers\RankController::class, 'rank'])->name("rank");
 
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
-// Route::get('/search/ajax', [App\Http\Controllers\SearchController::class, 'ajax']);
+Route::get('/search/category', [App\Http\Controllers\SearchController::class, 'search']);
+Route::get('/search/rank', [App\Http\Controllers\SearchController::class, 'rank']);
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);

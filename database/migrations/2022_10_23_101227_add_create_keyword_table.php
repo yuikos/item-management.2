@@ -14,6 +14,7 @@ class AddCreateKeywordTable extends Migration
     public function up()
     {
         Schema::table('keywords', function (Blueprint $table) {
+            
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });
