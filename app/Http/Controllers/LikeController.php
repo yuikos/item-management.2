@@ -16,6 +16,7 @@ class LikeController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        
         $item = Item::find($item_id);
 
         return redirect()->route('class',['class11' => $item->class11, 'class21' => $item->class21]);

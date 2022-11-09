@@ -21,6 +21,7 @@
                         </div>
                     </div>
                 </div>
+                @if($items)
                     <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
@@ -50,6 +51,9 @@
                             <button type="submit">CSV出力</button>
                         </form>
                     </div>
+                @else
+                    <h1>まだ"いいね"はされていません</h1>
+                @endif
             </div>
         </div>
     </div>

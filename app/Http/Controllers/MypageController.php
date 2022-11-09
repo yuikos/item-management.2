@@ -16,17 +16,20 @@ class MypageController extends Controller
         $likes = Like::where('user_id',$user_id)
                 ->get();
         
-        foreach ($likes as $like){
-            $items[] = Item::find($like->item_id);
-            $likes_number[$like->item_id] = Like::getCountLike($like->item_id);
-        }
-      
-        return view('mypage',[
-            'items'=>$items,
-            'likes'=>$likes,
-            'likes_number'=>$likes_number,
-        ]);
-
+        $items = [];
+        $likes_number = [];
+            foreach ($likes as $like){
+                $items[] = Item::find($like->item_id);
+                $likes_number[$like->item_id] = Like::getCountLike($like->item_id);
+            }
+            // dd($items[]);
+            return view('mypage',[
+                'items'=>$items,
+                'likes'=>$likes,
+                'likes_number'=>$likes_number,
+            ]);
+        
+        
     }
 
     public function mypageCSV()

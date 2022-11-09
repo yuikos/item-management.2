@@ -22,6 +22,8 @@ class RankController extends Controller
         $rank = [];
         $prev_number = 0;
         $prev_rank = 0;
+        $items = [];
+        $likes_number = [];
 
         foreach($likes as $like){
             $items[] = Item::find($like->item_id);

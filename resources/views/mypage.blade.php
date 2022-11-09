@@ -21,6 +21,7 @@
                         </div>
                     </div>
                 </div>
+                @if($items)
                     <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
@@ -65,7 +66,10 @@
                          <form action="{{ url('/mycsv') }}" method="get">
                             <button type="submit">CSV出力</button>
                         </form>
-                    </div>
+                @else
+                    <h1>まだお気に入り登録はされていません</h1>
+                @endif
+                </div>
             </div>
         </div>
     </div>
