@@ -30,7 +30,8 @@ Route::post('/unlike/{id}', [App\Http\Controllers\LikeController::class, 'unlike
 Route::get('/mypage', [App\Http\Controllers\MypageController::class, 'mypage'])->name("mypage");
 Route::get('/mycsv', [App\Http\Controllers\MypageController::class, 'mypageCSV']);
 
-Route::get('/rank', [App\Http\Controllers\RankController::class, 'rank'])->name("rank");
+Route::get('/rank/good', [App\Http\Controllers\RankController::class, 'good'])->name("good");
+Route::get('/rank/keyword', [App\Http\Controllers\RankController::class, 'keyword'])->name("keyword");
 
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
 Route::get('/search/category', [App\Http\Controllers\SearchController::class, 'search']);

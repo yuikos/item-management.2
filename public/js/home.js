@@ -15,9 +15,20 @@
 
 $('.class0').click(function(){
     $('.class1').fadeIn();
+
 });
 
 $('.jyoon').click(function(){
     $('.class2').fadeIn();
+    $('.child').fadeOut();
+    $('.liquor').fadeOut();
+    $('.sweets').fadeOut();
+});
+
+$('.child').click(function(){
+    $('.class2').fadeIn();
+    $('.child').fadeOut();
+    $('.liquor').fadeOut();
+    $('.sweets').fadeOut();
 });
 

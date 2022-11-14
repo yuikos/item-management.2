@@ -28,7 +28,7 @@ class AddCreateKeywordTable extends Migration
     public function down()
     {
         Schema::table('keywords', function (Blueprint $table) {
-            //
+            
         });
     }
 }

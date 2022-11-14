@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -65,7 +66,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -85,8 +86,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -170,8 +171,8 @@ return [
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
+    'right_sidebar_slide' => null,
+    'right_sidebar_push' => null,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
@@ -226,126 +227,274 @@ return [
 
     'menu' => [
         [
-            'text' => '商品一覧',
-            'url'  => 'items',
-            'icon' => 'fas fa-gamepad',
-        ],
-        [
-            'text' => 'お気に入り一覧',
-            'url'  => 'mypage',
-            'icon' => 'fas fa-star',
-        ],
-        [
-            'text' => '”いいね”ランキング',
-            'url'  => 'rank',
-            'icon' => 'fas fa-crown',
-        ],
-        [
-            'text' => '”キーワード”ランキング',
-            'url'  => 'keyword',
-            'icon' => 'fas fa-crown',
-        ],
-
-        // AdminLTEデフォルト
-        /*
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-        */
-
-        // AdminLTEデフォルト
-        /*
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text' => '新製品情報',
+            'url'  => '#',
+            'icon' => 'far fa-folder',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'キーワード検索',
+                    'url'  => 'search',
+                    'icon' => '	fas fa-search',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
+                    'text'    => 'カテゴリー別',
+                    'icon'    => 'fas fa-th-list',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text' => '常温',
+                            'icon'    => 'fas fa-circle',
                             'url'  => '#',
+                            'submenu' => [
+                                [
+                                    'text' => '調味料',
+                                    'url'  => 'item/1/13',
+                                ],
+                                [
+                                    'text' => '食用油',
+                                    'url'  => 'item/1/11',
+                                ],
+                                [
+                                    'text' => 'スプレッド',
+                                    'url'  => 'item/1/3',
+                                ],
+                                [
+                                    'text' => '乳製品',
+                                    'url'  => 'item/1/15',
+                                ],
+                                [
+                                    'text' => '調理品',
+                                    'url'  => 'item/1/14',
+                                ],
+                                [
+                                    'text' => 'スープ',
+                                    'url'  => 'item/1/2',
+                                ],
+                                [
+                                    'text' => 'ビン・缶詰',
+                                    'url'  => 'item/1/6',
+                                ],
+                                [
+                                    'text' => '粉類',
+                                    'url'  => 'item/1/16',
+                                ],
+                                [
+                                    'text' => 'ホームメイキング材料',
+                                    'url'  => 'item/1/7',
+                                ],
+                                [
+                                    'text' => '麺類',
+                                    'url'  => 'item/1/17',
+                                ],
+                                [
+                                    'text' => 'パン・シリアル類',
+                                    'url'  => 'item/1/5',
+                                ],
+                                [
+                                    'text' => '穀物',
+                                    'url'  => 'item/1/10',
+                                ],
+                                [
+                                    'text' => '乾物',
+                                    'url'  => 'item/1/9',
+                                ],
+                                [
+                                    'text' => '嗜好飲料',
+                                    'url'  => 'item/1/18',
+                                ],
+                                [
+                                    'text' => '果実・トマト・野菜飲料',
+                                    'url'  => 'item/1/8',
+                                ],
+                                [
+                                    'text' => '清涼飲料',
+                                    'url'  => 'item/1/12',
+                                ],
+                                [
+                                    'text' => 'ギフト',
+                                    'url'  => 'item/1/1',
+                                ],
+                                [
+                                    'text' => 'その他加工食品',
+                                    'url'  => 'item/1/4',
+                                ],
+        
+                            ],
                         ],
                         [
-                            'text'    => 'level_two',
+                            'text'    => '低温',
+                            'icon'    => 'fas fa-circle',
                             'url'     => '#',
                             'submenu' => [
                                 [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
+                                    'text' => '乳製品',
+                                    'url'  => 'item/2/12',
                                 ],
                                 [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
+                                    'text'    => '冷凍食品',
+                                    'url'     => 'item/2/3',
+                                ],
+                                [
+                                    'text'    => '麺類',
+                                    'url'     => 'item/2/5',
+                                ],
+                                [
+                                    'text'    => '練製品',
+                                    'url'     => 'item/2/14',
+                                ],
+                                [
+                                    'text'    => '漬物',
+                                    'url'     => 'item/2/6',
+                                ],
+                                [
+                                    'text'    => '佃煮・煮豆',
+                                    'url'     => 'item/2/16',
+                                ],
+                                [
+                                    'text'    => '水物',
+                                    'url'     => 'item/2/4',
+                                ],
+                                [
+                                    'text'    => '卵加工品',
+                                    'url'     => 'item/2/17',
+                                ],
+                                [
+                                    'text'    => 'チルド調理加工品',
+                                    'url'     => 'item/2/8',
+                                ],
+                                [
+                                    'text'    => '惣菜',
+                                    'url'     => 'item/2/7',
+                                ],
+                                [
+                                    'text'    => '水産加工品',
+                                    'url'     => 'item/2/15',
+                                ],
+                                [
+                                    'text'    => 'チルドデザート・ヨーグルト',
+                                    'url'     => 'item/2/2',
+                                ],
+                                [
+                                    'text'    => 'アイスクリーム',
+                                    'url'     => 'item/2/1',
+                                ],
+                                [
+                                    'text'    => '清涼飲料',
+                                    'url'     => 'item/2/9',
+                                ],
+                                [
+                                    'text'    => '乳飲料',
+                                    'url'     => 'item/2/11',
+                                ],
+                                [
+                                    'text'    => 'その他チルド飲料',
+                                    'url'     => 'item/2/10',
+                                ],
+                            ],
+                        ],
+                        [
+                            'text' => '酒類',
+                            'icon'    => 'fas fa-circle',
+                            'url'  => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'その他飲料',
+                                    'url'  => 'item/3/10',
+                                ],
+                                [
+                                    'text'    => '清酒・合成清酒',
+                                    'url'     => 'item/3/5',
+                                ],
+                                [
+                                    'text' => '焼酎',
+                                    'url'  => 'item/3/4',
+                                ],
+                                [
+                                    'text'    => 'ビール',
+                                    'url'     => 'item/3/3',
+                                ],
+                                [
+                                    'text' => '発泡酒',
+                                    'url'  => 'item/3/8',
+                                ],
+                                [
+                                    'text'    => '果実酒・甘味果実酒',
+                                    'url'     => 'item/3/6',
+                                ],
+                                [
+                                    'text' => 'ウイスキー・ブランデー',
+                                    'url'  => 'item/3/2',
+                                ],
+                                [
+                                    'text'    => 'スピリッツ・リキュール',
+                                    'url'     => 'item/3/1',
+                                ],
+                                [
+                                    'text' => 'その他酒類',
+                                    'url'  => 'item/3/7',
+                                ],
+                                [
+                                    'text'    => 'その他酒類関連商品',
+                                    'url'     => 'item/3/9',
+                                ],
+        
+                            ],
+                        ],
+                        [
+                            'text' => '菓子',
+                            'icon'    => 'fas fa-circle',
+                            'url'  => '#',
+                            'submenu' => [
+                                [
+                                    'text' => '菓子',
+                                    'url'  => 'item/4/2',
+                                ],
+                                [
+                                    'text'    => '催事菓子',
+                                    'url'     => 'item/4/5',
+                                ],
+                                [
+                                    'text' => 'その他菓子',
+                                    'url'  => 'item/4/1',
+                                ],
+                                [
+                                    'text'    => '日配菓子（常温）',
+                                    'url'     => 'item/4/3',
+                                ],
+                                [
+                                    'text'    => 'その他菓子類',
+                                    'url'     => 'item/4/4',
                                 ],
                             ],
                         ],
                     ],
                 ],
+
+            ]
+        ],
+        [
+            'text' => 'ランキング',
+            'url'  => '#',
+            'icon' => 'fas fa-crown',
+            'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => '”いいね”ランキング',
+                    'url'  => 'rank/good',
+                    'icon' => 'fas fa-crown',
                 ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+                [
+                    'text' => '”キーワード”ランキング',
+                    'url'  => 'rank/keyword',
+                    'icon' => 'fas fa-crown',
+                ],
+            ]
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'マイページ',
+            'url'  => 'mypage',
+            'icon' => 'far fa-address-card',
         ],
-        */
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -500,4 +649,5 @@ return [
     */
 
     'livewire' => false,
+
 ];

@@ -22,6 +22,7 @@
                     </div>
                 </div>
                 <form action="{{ url('/csv/'.$class11.'/'.$class21) }}" method="get">
+                    <button type="submit">CSV出力</button>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -48,7 +49,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit">CSV出力</button>
+                   
                 </form>
             </div>
         </div>

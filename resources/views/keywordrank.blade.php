@@ -31,11 +31,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($items as $item)
+                                    @foreach ($keywords as $keyword)
                                         <tr>
-                                            <td>{{ $rank[$item->id] }}</td>
-                                            <td>{{ $likes_number[$item->id] }}</td> 
-                                            <td>{{ $item->JAN }}</td>
+                                            <td>{{ $rank[$keyword->keyword] }}</td>
+                                            <td>{{ $keyword->keyword }}</td> 
+                                            <td>{{ $keyword->count }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

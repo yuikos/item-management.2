@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\like;
+use App\Models\Keyword;
 
 class RankController extends Controller
 {
-    public function rank()
+    public function good()
     {   
         $likes = Like::query()
                     ->selectRaw(DB::raw('likes.item_id,count(likes.user_id) as likes_count'))
@@ -20,8 +21,8 @@ class RankController extends Controller
 
         $count = 1;
         $rank = [];
-        $prev_number = 0;
         $prev_rank = 0;
+        $prev_number = 0;
         $items = [];
         $likes_number = [];
 
@@ -48,6 +49,38 @@ class RankController extends Controller
             'items'=>$items,
             'likes_number'=>$likes_number,
 
+        ]);
+        
+    }
+
+    public function keyword()
+    { 
+        $keywords = Keyword::select(DB::raw('keyword, COUNT(*) as count'))
+                        ->groupBy('keyword')
+                        ->orderByDesc('count')
+                        ->get();
+        // $keywords = DB::select(DB::raw("SELECT keyword, count(*) as keyword_count FROM keywords group by keyword order by keyword_count desc"));
+
+        $rank = [];
+        $prev_rank = 1;
+        $number = 1;
+        $prev_count = 1;
+
+        foreach($keywords as $keyword){
+            if($prev_count == $keyword->count){
+                $rank[$keyword->keyword] = $prev_rank;
+            }else{
+                $rank[$keyword->keyword] = $number;
+                $prev_rank = $number;
+                $prev_count = $keyword->count;
+            }
+            $number++;
+        };
+
+        return view('keywordrank',[
+            'rank'=>$rank,
+            'keywords'=>$keywords,
+            'keyword_count'=>$keyword->count,
         ]);
         
     }
