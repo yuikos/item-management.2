@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
-use App\Models\like;
+use App\Models\Like;
 use App\Models\Keyword;
 
 class RankController extends Controller
