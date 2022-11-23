@@ -40,7 +40,7 @@ class HomeController extends Controller
         $items = Item::where('class11',$class11)
             ->where('class21',$class21)
             ->get();
-        
+
         foreach($items as $item){
             // $item_id[]=$item->id;
             $item['like_number'] = Like::getCountLike($item->id);

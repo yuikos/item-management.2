@@ -3,7 +3,7 @@
 @section('title', '商品一覧')
 
 @section('content_header')
-    <h1>商品一覧</h1>
+    <h1>【{{$items[0]->class1}}】{{$items[0]->class2}}</h1>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
