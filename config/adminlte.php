@@ -493,6 +493,12 @@ return [
             'url'  => 'mypage',
             'icon' => 'far fa-address-card',
         ],
+        [
+            'text' => '商品登録',
+            'url'  => 'items/add',
+            'icon' => 'far fa-edit',
+            'can'  => 'system-only'
+        ],
     ],
 
 

@@ -13,13 +13,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">"いいね"ランキング</h3>
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-append">
-                                <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 @if($items)
                     <div class="card-body table-responsive p-0">
