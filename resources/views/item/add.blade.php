@@ -24,13 +24,38 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">名前</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="名前">
+                            <label for="name">メーカー名</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="●●●●株式会社">
                         </div>
 
                         <div class="form-group">
-                            <label for="type">種別</label>
-                            <input type="number" class="form-control" id="type" name="type" placeholder="1, 2, 3, ...">
+                            <label for="name">商品名</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">JAN</label>
+                            <input type="number" class="form-control" id="type" name="type" placeholder="4900000000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">カテゴリー大分類</label>
+                            <select class="form-control" id="type" name='age'>
+                                <option value='1'>常温</option>
+                                <option value='2'>低温</option>
+                                <option value='3'>酒類</option>
+                                <option value='4'>菓子</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">カテゴリー中分類</label>
+                            <select class="form-control" id="type"  name="category" onChange="pickclass2();">
+                                <option value="">中分類を選んでください</option>
+                                    @foreach($categorys as $category)
+                                        <option value="{{ $category }}">{{ $category }}</option>
+                                    @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

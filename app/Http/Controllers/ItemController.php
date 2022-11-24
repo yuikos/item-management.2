@@ -35,6 +35,11 @@ class ItemController extends Controller
      */
     public function add(Request $request)
     {
+        $class11 = $request->class11;
+        $class21 = $request->category;
+        $search_word = $request->key;
+        $categorys = Item::where('class11',$class11)->pluck('class2');
+
         // POSTリクエストのとき
         if ($request->isMethod('post')) {
             // バリデーション
@@ -53,6 +58,9 @@ class ItemController extends Controller
             return redirect('/items');
         }
 
-        return view('item.add');
+        return view('item.add',[
+            'class11'=>$class11,
+            'categorys'=>$categorys,
+        ]);
     }
 }

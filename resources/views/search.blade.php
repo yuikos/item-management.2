@@ -15,14 +15,14 @@
                 <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
                     <form action="{{ url('/search') }}" class="form-horizontal find" method="get"  class="form-horizontal">
                         @csrf
-                        <select id="class11" name='class11' class='form-control flex-items' onChange="pickclass2();">
+                        <select id="class11" name='class11' class="form-control" onChange="pickclass2();">
                             <option value=''>大分類を選んでください</option>
                             <option value='1'>常温加工</option>
                             <option value='2'>冷凍・チルド</option>
                             <option value='3'>酒類</option>
                             <option value='4'>菓子</option>
                          </select>
-                        <select id="category" name="category" class='form-control mr-2 flex-items'>
+                        <select id="category" name="category" class="form-control">
                            <option value="">中分類を選んでください</option>
                                @foreach($categorys as $category)
                                    <option value="{{ $category }}">{{ $category }}</option>
