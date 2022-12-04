@@ -36,9 +36,9 @@ Route::get('/rank/keyword', [App\Http\Controllers\RankController::class, 'keywor
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
 
 Route::prefix('items')->group(function () {
-    Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-    Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    
+    Route::any('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    Route::any('/store', [App\Http\Controllers\ItemController::class, 'store']);
+   
 });
 
 

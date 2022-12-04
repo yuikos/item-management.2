@@ -1,8 +1,8 @@
 function pickcategory()
 {
-    let obj = document.getElementById('class11');
+    let obj = document.getElementById('class1');
     let index = obj.selectedIndex;//選択した選択肢のindex番号取得
-    let value = class11.options[index].value;//選択したoptionのvalueの値を取得
+    let value = class1.options[index].value;//選択したoptionのvalueの値を取得
     $.ajax({
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
