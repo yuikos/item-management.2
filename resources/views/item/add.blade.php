@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>商品登録</h1>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('content')
@@ -20,11 +21,11 @@
             @endif
 
             <div class="card card-primary">
-                <form method="POST">
+                <form method="get">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">メーカー名</label>
+                            <label for="maker">メーカー名</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="●●●●株式会社">
                         </div>
 
@@ -34,13 +35,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="type">JAN</label>
+                            <label for="JAN">JAN</label>
                             <input type="number" class="form-control" id="type" name="type" placeholder="4900000000">
                         </div>
 
                         <div class="form-group">
-                            <label for="type">カテゴリー大分類</label>
-                            <select class="form-control" id="type" name='age'>
+                            <label for="class11">カテゴリー大分類</label>
+                            <select class="form-control" id="class11" name='class11' onChange="pickcategory();">
                                 <option value='1'>常温</option>
                                 <option value='2'>低温</option>
                                 <option value='3'>酒類</option>
@@ -49,8 +50,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="type">カテゴリー中分類</label>
-                            <select class="form-control" id="type"  name="category" onChange="pickclass2();">
+                            <label for="category">カテゴリー中分類</label>
+                            <select class="form-control" id="category"  name="category">
                                 <option value="">中分類を選んでください</option>
                                     @foreach($categorys as $category)
                                         <option value="{{ $category }}">{{ $category }}</option>
@@ -73,8 +74,7 @@
     </div>
 @stop
 
-@section('css')
-@stop
 
 @section('js')
+    <script src="{{ asset('/js/item.add.js') }}"></script>
 @stop

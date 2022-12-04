@@ -26,8 +26,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $items = Item::all();
+        $count = count($items);
+        $items_id = rand(0, $count-1);
+        
+        $recommend_item = Item::where('id',$items_id)->get();
+        
+        // dd($recommend_item);
+
+        return view('home',[
+            'recommend_item' => $recommend_item,
+        ]);
     }
 
     public function item()

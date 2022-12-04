@@ -15,7 +15,7 @@ class ItemController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -37,7 +37,6 @@ class ItemController extends Controller
     {
         $class11 = $request->class11;
         $class21 = $request->category;
-        $search_word = $request->key;
         $categorys = Item::where('class11',$class11)->pluck('class2');
 
         // POSTリクエストのとき
@@ -49,9 +48,11 @@ class ItemController extends Controller
 
             // 商品登録
             Item::create([
-                'user_id' => Auth::user()->id,
+                'maker' => $request->maker,
                 'name' => $request->name,
-                'type' => $request->type,
+                'JAN' => $request->JAN,
+                'class11' =>$request->class11,
+                'class21' =>$request->class21,
                 'detail' => $request->detail,
             ]);
 
@@ -62,5 +63,18 @@ class ItemController extends Controller
             'class11'=>$class11,
             'categorys'=>$categorys,
         ]);
+    }
+
+    public function ajax(Request $request)
+    {
+        header('Content-type:application/json;charset=utf-8');
+ 
+        $class11 = $request->value;
+        
+        $categorys = Item::where('class11',$class11)
+                    ->groupBy('class2')
+                    ->pluck('class2');
+                    
+        return response()->json($categorys);
     }
 }

@@ -34,13 +34,11 @@ Route::get('/rank/good', [App\Http\Controllers\RankController::class, 'good'])->
 Route::get('/rank/keyword', [App\Http\Controllers\RankController::class, 'keyword'])->name("keyword");
 
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
-Route::get('/search/category', [App\Http\Controllers\SearchController::class, 'search']);
-Route::get('/search/rank', [App\Http\Controllers\SearchController::class, 'rank']);
 
 Route::prefix('items')->group(function () {
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
     Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    
 });
 
 
