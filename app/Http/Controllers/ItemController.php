@@ -64,12 +64,11 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $class11 = $request->class1;
-        // return $this->jsonResponse($class11);
-        $class1 = Item::where('class11','=',$class11)->groupBy('class1')->pluck('class1');
+        $class1 = Item::where('class11','=',$class11)->groupBy('class1')->first('class1');
         $categorys = Item::where('class11','=',$class11)->groupBy('class2')->pluck('class2');
         $class2 = $request->category;
-        $class21 = Item::where('class2',$class2)->groupBy('class21')->get('class21');
-        // return $this->jsonResponse($class21);
+        $class21 = Item::where('class2',$class2)->groupBy('class21')->first('class21');
+
 
         $this->validate($request, [
             'maker' => 'required',
@@ -92,11 +91,11 @@ class ItemController extends Controller
             'maker' => $request->maker,
             'name' => $request->name,
             'JAN' => $request->JAN,
-            'class1' =>$class1,
+            'class1' =>$class1->class1,
             'class2' =>$class2,
             'feature' => $request->feature,
             'class11'=>$class11,
-            'class21'=>$class21,
+            'class21'=>$class21->class21,
         ]);
 
         return view('item.add',[

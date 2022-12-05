@@ -7,7 +7,7 @@ function pickcategory()
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
         },//headersを書き忘れるとエラーになる
-        type:"GET",//リクエストタイプ(postでも可)
+        type:"POST",//リクエストタイプ(postでも可)
         url:"/api/items/add/ajax",//指定したコントローラーに付随するurl
         data:{"value":value},//laravelに渡すデータ
         dataType:"json" //データの取得タイプ
