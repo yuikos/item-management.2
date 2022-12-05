@@ -31,12 +31,12 @@ class HomeController extends Controller
         $count = count($items);
         $items_id = rand(0, $count-1);
         
-        $recommend_item = Item::where('id',$items_id)->get();
+        $recommend_items = Item::where('id',$items_id)->get();
         
         // dd($recommend_item);
 
         return view('home',[
-            'recommend_item' => $recommend_item,
+            'recommend_items' => $recommend_items,
         ]);
     }
 
