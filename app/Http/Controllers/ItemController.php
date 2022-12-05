@@ -39,8 +39,8 @@ class ItemController extends Controller
         $categorys = Item::where('class11','=',$class11)->groupBy('class2')->pluck('class2');
 
         return view('item.add',[
-             'categorys'=>$categorys,
-        ]);
+            'categorys'=>$categorys,
+       ]);
 
     }
 
@@ -64,10 +64,12 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $class11 = $request->class1;
+        // return $this->jsonResponse($class11);
         $class1 = Item::where('class11','=',$class11)->groupBy('class1')->pluck('class1');
         $categorys = Item::where('class11','=',$class11)->groupBy('class2')->pluck('class2');
         $class2 = $request->category;
         $class21 = Item::where('class2',$class2)->groupBy('class21')->get('class21');
+        // return $this->jsonResponse($class21);
 
         $this->validate($request, [
             'maker' => 'required',
@@ -97,13 +99,8 @@ class ItemController extends Controller
             'class21'=>$class21,
         ]);
 
-        return view('item.confirm',[
-            'maker' => $request->maker,
-            'name' => $request->name,
-            'JAN' => $request->JAN,
-            'class1' =>$class1,
-            'class2' =>$class2,
-            'feature' => $request->feature,
+        return view('item.add',[
+            'categorys'=>$categorys,
        ]);
     }
 

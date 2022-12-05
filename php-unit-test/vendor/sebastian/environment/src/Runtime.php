@@ -253,14 +253,14 @@ final class Runtime
     }
 
     /**
-     * Parses the loaded php.ini file (if any) as well as all
-     * additional php.ini files from the additional ini dir for
+     * Parses the loaded  file (if any) as well as all
+     * additional  files from the additional ini dir for
      * a list of all configuration settings loaded from files
-     * at startup. Then checks for each php.ini setting passed
+     * at startup. Then checks for each  setting passed
      * via the `$values` parameter whether this setting has
      * been changed at runtime. Returns an array of strings
      * where each string has the format `key=value` denoting
-     * the name of a changed php.ini setting with its new value.
+     * the name of a changed  setting with its new value.
      *
      * @return string[]
      */

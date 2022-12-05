@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">確認画面へ</button>
+                        <button type="submit" class="btn btn-primary">商品登録</button>
                     </div>
                 </form>
             </div>
