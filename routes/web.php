@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/logout', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/item/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'class'])->name("class");
 Route::get('/detail/{id}', [App\Http\Controllers\HomeController::class, 'detail'])->name("detail");
 Route::get('/csv/{class11?}/{class21?}', [App\Http\Controllers\HomeController::class, 'postCSV']);
