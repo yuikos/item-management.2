@@ -40,9 +40,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                         <form action="{{ url('/mycsv') }}" method="get">
-                            <button type="submit">CSV出力</button>
-                        </form>
                     </div>
                 @else
                     <h1>まだ"いいね"はされていません</h1>

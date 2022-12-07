@@ -48,7 +48,7 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td><a href="{{ url('/detail/'.$item->id) }}">詳細</a></td>
-                                    {{-- <td>{{ $likes_number[$item->id] }}</td>  --}}
+                                    <td>{{ $item->like_number }}</td> 
                                     <td>{{ $item->JAN }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->maker }}</td>

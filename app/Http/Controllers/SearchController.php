@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Keyword;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,11 @@ class SearchController extends Controller
             $items = Item::All();
         };
         
+        foreach($items as $item){
+            // $item_id[]=$item->id;
+            $item['like_number'] = Like::getCountLike($item->id);
+        }
+
         return view('search', [
             'class11'=>$class11,
             'categorys'=>$categorys,

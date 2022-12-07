@@ -11,7 +11,6 @@
     <h5>★おすすめ商品★</h5>
     <table class="table">
         <tbody>
-            @foreach ($recommend_items as $recommend_item)
                 <tr>
                     <th scope="row">JAN</th>
                     <td>{{ $recommend_item->JAN }}</td>
@@ -28,7 +27,6 @@
                     <th scope="row">特徴</th>
                     <td>{!! nl2br(htmlspecialchars($recommend_item->feature)) !!}</td>
                 </tr>
-            @endforeach
         </tbody>
     </table>
 @stop

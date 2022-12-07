@@ -27,16 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $items = Item::all();
-        $count = count($items);
-        $items_id = rand(0, $count-1);
-        
-        $recommend_items = Item::where('id',$items_id)->get();
-        
-        // dd($recommend_item);
+        $recommend_item = Item::inRandomOrder()->first();
 
         return view('home',[
-            'recommend_items' => $recommend_items,
+            'recommend_item' => $recommend_item,
         ]);
     }
 
