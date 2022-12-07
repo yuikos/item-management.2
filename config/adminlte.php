@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'logo' => '<b>Menu</b>',
+    'logo' => '<b>VirtualExpo</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
