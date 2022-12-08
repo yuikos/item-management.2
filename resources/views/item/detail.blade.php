@@ -29,7 +29,7 @@
                             <tbody>
                                     <tr>
                                         <td>
-                                            @if($like_number)
+                                            @if($user_like)
                                                 <div class="col-md-3">
                                                 <form action="{{ url('/unlike/'.$item->id) }}" method="POST">
                                                     @csrf

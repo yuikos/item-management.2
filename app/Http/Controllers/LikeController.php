@@ -27,6 +27,7 @@ class LikeController extends Controller
         $like = Like::where('item_id',$item_id)
                 ->where('user_id', Auth::id())
                 ->first();
+
         $like->delete();
 
         $item = Item::find($item_id);

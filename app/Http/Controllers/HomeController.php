@@ -111,10 +111,14 @@ class HomeController extends Controller
 
         $this->likes = new Like();
         $like_number = Like::getCountLike($item_id);
+        $user_like = Like::where('item_id',$item_id)
+                    ->where('user_id', Auth::id())
+                    ->first();
 
         return view('item.detail', [
             'item' => $item,
             'like_number'=>$like_number,
+            'user_like'=>$user_like,
         ]);
     }
 
