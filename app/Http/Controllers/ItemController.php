@@ -30,9 +30,6 @@ class ItemController extends Controller
 
     }
 
-    /**
-     * 商品画面
-     */
     public function add(Request $request)
     {
         $class11 = $request->class1;
@@ -58,10 +55,10 @@ class ItemController extends Controller
     }
 
     /**
-     * 商品登録
+     * 商品情報確認
      */
-
-    public function store(Request $request)
+     
+    public function confirm(Request $request)
     {
         $class11 = $request->class1;
         $class1 = Item::where('class11','=',$class11)->groupBy('class1')->first('class1');
@@ -86,21 +83,34 @@ class ItemController extends Controller
             'category.required' => 'カテゴリーは必須です。',
             'feature.required'  => '商品詳細は必須項目です。',
          ]);
+        
+        $input = $request->only($this->formItems);
+        $request->session()->put("form_input", $input);
 
-         Item::create([
-            'maker' => $request->maker,
-            'name' => $request->name,
-            'JAN' => $request->JAN,
-            'class1' =>$class1->class1,
-            'class2' =>$class2,
-            'feature' => $request->feature,
-            'class11'=>$class11,
-            'class21'=>$class21->class21,
-        ]);
+        return redirect()->action("SampleFormController@confirm");
 
-        return view('item.add',[
+        return view('item.confirm',[
             'categorys'=>$categorys,
        ]);
     }
+
+    // public function authorize(Request $request)
+    // {
+        
+    //      Item::create([
+    //         'maker' => $request->maker,
+    //         'name' => $request->name,
+    //         'JAN' => $request->JAN,
+    //         'class1' =>$class1->class1,
+    //         'class2' =>$class2,
+    //         'feature' => $request->feature,
+    //         'class11'=>$class11,
+    //         'class21'=>$class21->class21,
+    //     ]);
+
+    //     return view('item.add',[
+    //         'categorys'=>$categorys,
+    //    ]);
+    // }
 
 }

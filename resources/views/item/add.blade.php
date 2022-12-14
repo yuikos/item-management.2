@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="card card-primary">
-                <form action="{{url('items/store')}}" method="post">
+                <form action="{{url('items/confirm')}}" method="post">
                     @csrf
                     @if (count($errors) > 0)
                         <div>

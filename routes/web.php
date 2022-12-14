@@ -37,8 +37,7 @@ Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
 
 Route::prefix('items')->group(function () {
     Route::any('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    Route::any('/store', [App\Http\Controllers\ItemController::class, 'store']);
-   
+    Route::any('/confirm', [App\Http\Controllers\ItemController::class, 'confirm']);
+    Route::any('/authorize', [App\Http\Controllers\ItemController::class, 'authorize']);
 });
-
 

@@ -15,14 +15,11 @@ class Item extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'class1',
-        'class11',
-        'class2',
-        'class21',
         'maker',
         'name',
         'JAN',
         'feature',
+        'category_id',
     ];
 
     /**

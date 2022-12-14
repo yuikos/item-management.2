@@ -497,7 +497,14 @@ return [
             'text' => '商品登録',
             'url'  => 'items/add',
             'icon' => 'far fa-edit',
-            'can'  => 'system-only'
+            'can'  => 'register',
+            'can'  => 'authorizer'
+        ],
+        [
+            'text' => '承認画面',
+            'url'  => 'items/authorize',
+            'icon' => 'fa fa-gavel',
+            'can'  => 'authorizer'
         ],
     ],
 
