@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/search/ajax', [App\Http\Controllers\SearchController::class, 'ajax']); 
+Route::get('/search/ajax_main', [App\Http\Controllers\SearchController::class, 'ajax_main']); 
+Route::get('/search/ajax_sub', [App\Http\Controllers\SearchController::class, 'ajax_sub']); 
 Route::post('/items/add/ajax', [App\Http\Controllers\ItemController::class, 'ajax']); 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Sub_category;
 
 class ItemController extends Controller
 {
@@ -32,11 +33,11 @@ class ItemController extends Controller
 
     public function add(Request $request)
     {
-        $class11 = $request->class1;
-        $categorys = Item::where('class11','=',$class11)->groupBy('class2')->pluck('class2');
+        $main_category_id = $request->main_category;
+        $sub_categories = Sub_category::where('main_category_id','=',$main_category_id)->groupBy('name')->pluck('name');
 
         return view('item.add',[
-            'categorys'=>$categorys,
+            'sub_categories'=>$sub_categories,
        ]);
 
     }
@@ -44,14 +45,11 @@ class ItemController extends Controller
     public function ajax(Request $request)
     {
         header('Content-type:application/json;charset=utf-8');
- 
-        $class11 = $request->value;
+
+        $main_category_id = $request->value;
         
-        $categorys = Item::where('class11',$class11)
-                    ->groupBy('class2')
-                    ->pluck('class2');
-                    
-        return response()->json($categorys);
+        $sub_categories = Sub_category::where('main_category_id',$main_category_id)->pluck('name');
+        return response()->json($sub_categories);
     }
 
     /**

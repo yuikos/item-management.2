@@ -19,7 +19,7 @@ class LikeController extends Controller
         
         $item = Item::find($item_id);
 
-        return redirect()->route('class',['class11' => $item->class11, 'class21' => $item->class21]);
+        return redirect()->route('class',['category_id' => $item->category_id]);
     }
 
     public function unlike($item_id)
@@ -32,6 +32,6 @@ class LikeController extends Controller
 
         $item = Item::find($item_id);
 
-        return redirect()->route('class',['class11' => $item->class11, 'class21' => $item->class21]);
+        return redirect()->route('class',['category_id' => $item->category_id]);
     }
 }

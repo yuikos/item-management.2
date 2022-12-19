@@ -39,8 +39,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="class1">カテゴリー大分類</label>
-                            <select class="form-control" id="class1" name='class1' onChange="pickcategory();">
+                            <label for="main_category">カテゴリー大分類</label>
+                            <select class="form-control" id="main_category" name='main_category' onChange="picksub_category();">
                                 <option value='1'>常温</option>
                                 <option value='2'>低温</option>
                                 <option value='3'>酒類</option>
@@ -49,11 +49,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="category">カテゴリー中分類</label>
-                            <select class="form-control" id="category"  name="category">
+                            <label for="sub_category">カテゴリー中分類</label>
+                            <select class="form-control" id="sub_category"  name="sub_category">
                                 <option value="">中分類を選んでください</option>
-                                    @foreach($categorys as $category)
-                                        <option value="{{ $category }}">{{ $category }}</option>
+                                    @foreach($sub_categories as $sub_category)
+                                        <option value="{{ $sub_category }}">{{ $sub_category }}</option>
                                     @endforeach
                             </select>
                         </div>

@@ -240,7 +240,7 @@ return [
                     'text'    => 'カテゴリー別',
                     'icon'    => 'fas fa-th-list',
                     'submenu' => [
-                        [
+                        [   
                             'text' => '常温',
                             'icon'    => 'fas fa-circle',
                             'url'  => '#',

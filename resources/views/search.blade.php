@@ -15,19 +15,24 @@
                 <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
                     <form action="{{ url('/search') }}" class="form-horizontal find" method="get"  class="form-horizontal">
                         @csrf
-                        <select id="class11" name='class11' class="form-control" onChange="pickclass2();">
+                        <select id="main_category" name='main_category' class="form-control" onChange="picksub_category();">
                             <option value=''>大分類を選んでください</option>
-                            <option value='1'>常温加工</option>
-                            <option value='2'>冷凍・チルド</option>
-                            <option value='3'>酒類</option>
-                            <option value='4'>菓子</option>
+                            @foreach($main_categories as $main_category)
+                                <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
+                            @endforeach
                          </select>
-                        <select id="category" name="category" class="form-control">
+                        <select id="sub_category" name="sub_category" class="form-control" onChange="pickcategory();">
                            <option value="">中分類を選んでください</option>
-                               @foreach($categorys as $category)
-                                   <option value="{{ $category }}">{{ $category }}</option>
-                               @endforeach
+                            @foreach($sub_categories as $sub_category)
+                                <option value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
+                            @endforeach
                         </select>
+                        <select id="category" name="category" class="form-control">
+                            <option value="">小分類を選んでください</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                         </select>
                         <div class="form-group">
                             <input type="text" name="key"  class="form-control" placeholder="キーワードを入力">
                         </div>
@@ -64,7 +69,5 @@
        
  @endsection
 
-
 @section('js')
     <script src="js/search.js"></script>
-@stop

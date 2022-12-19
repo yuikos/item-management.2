@@ -39,11 +39,10 @@ class HomeController extends Controller
         return view('item');
     }
 
-    public function class($class11,$class21)
+    public function class($category_id)
     {   
-        $items = Item::where('class11',$class11)
-            ->where('class21',$class21)
-            ->get();
+        $items = Item::where('ategory_id',$category_id)
+                ->get();
 
         foreach($items as $item){
             // $item_id[]=$item->id;
@@ -51,8 +50,6 @@ class HomeController extends Controller
         }
        
         return view('item.index', [
-            'class11' => $class11,
-            'class21' => $class21,
             'items' => $items,
             // 'like_number'=>$like_number,
         ]);
@@ -61,12 +58,11 @@ class HomeController extends Controller
     /**
      * csv出力
      */
-    public function postCSV($class11,$class21)
+    public function postCSV($category_id)
     {
         // データの作成
-        $items = Item::where('class11',$class11)
-            ->where('class21',$class21)
-            ->get();
+        $items = Item::where('ategory_id',$category_id)
+                ->get();
 
         // カラムの作成
         $head = ['JAN', '商品名', 'メーカー名', '特徴'];
@@ -98,8 +94,6 @@ class HomeController extends Controller
         readfile('test.csv');
    
         return view('item.index', [
-            'class11' => $class11,
-            'class21' => $class21,
             'items' => $items,
 
         ]);
