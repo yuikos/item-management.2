@@ -19,7 +19,6 @@ class SearchController extends Controller
         $main_category_id = $request->main_category;
         $main_categories = Main_category::all();
         $sub_categories = Sub_category::where('main_category_id', $main_category_id);
-        $sub_category_id = $request->sub_category;
         $categories = Category::where('sub_category_id',$main_category_id);
         $category_id = $request->category;
         $search_word = $request->key;

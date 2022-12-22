@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Main_category;
 use App\Models\Sub_category;
+use App\Models\Category;
+use Illuminate\Support\Facades\Log;
 
 class ItemController extends Controller
 {
@@ -34,42 +37,76 @@ class ItemController extends Controller
     public function add(Request $request)
     {
         $main_category_id = $request->main_category;
-        $sub_categories = Sub_category::where('main_category_id','=',$main_category_id)->groupBy('name')->pluck('name');
+        $main_categories = Main_category::all();
+        $sub_categories = Sub_category::where('main_category_id', $main_category_id);
+        $categories = Category::where('sub_category_id',$main_category_id);
 
         return view('item.add',[
+            'main_categories' => $main_categories,
             'sub_categories'=>$sub_categories,
+            'categories'=>$categories,
        ]);
 
     }
 
-    public function ajax(Request $request)
+    public function ajax_main(Request $request)
     {
+        Log::debug('[ajax_main]: exec ajax_main');
         header('Content-type:application/json;charset=utf-8');
 
         $main_category_id = $request->value;
+        Log::debug('[ajax_main]: main_category_id is ' . $request->value);
+        $sub_categories = Sub_category::where('main_category_id',$main_category_id)->get();
+        $i = 0;
+        $resp_sub_cate = array();
+        foreach ($sub_categories as $temp_sub) {
+            Log::debug("[ajax_main]: [$i] id:" . $temp_sub->id);
+            Log::debug("[ajax_main]: [$i] name:" . $temp_sub->name);
+            Log::debug("[ajax_main]: [$i] main_category_id:" . $temp_sub->main_category_id);
+            $resp_sub_cate[$i] = array('id'=>$temp_sub->id);
+            $resp_sub_cate[$i] += array('name'=>$temp_sub->name);
+            $i++;
+        }
+        //return response()->json($sub_categories);
+        return response()->json($resp_sub_cate);
+    }
+
+    public function ajax_sub(Request $request)
+    {
+        Log::debug('[ajax_sub]:exec ajax_sub');
+        header('Content-type:application/json;charset=utf-8');
+
+        $sub_category_id = $request->value;
         
-        $sub_categories = Sub_category::where('main_category_id',$main_category_id)->pluck('name');
-        return response()->json($sub_categories);
+        $categories = Category::where('sub_category_id',$sub_category_id)->get();
+        $i = 0;
+        $resp_cate = array();
+        foreach ($categories as $temp_cate) {
+            Log::debug("[ajax_sub]: [$i] id:" . $temp_cate->id);
+            Log::debug("[ajax_sub]: [$i] name:" . $temp_cate->name);
+            Log::debug("[ajax_sub]: [$i] main_category_id:" . $temp_cate->sub_category_id);
+            $resp_cate[$i] = array('id'=>$temp_cate->id);
+            $resp_cate[$i] += array('name'=>$temp_cate->name);
+            $i++;
+        }
+        //return response()->json($categories);
+        return response()->json($resp_cate);
     }
 
     /**
      * 商品情報確認
      */
-     
-    public function confirm(Request $request)
+    
+    private $formItems = ["maker", "name","JAN","main_category","sub_category","category", "feature"];
+
+    public function post(Request $request)
     {
-        $class11 = $request->class1;
-        $class1 = Item::where('class11','=',$class11)->groupBy('class1')->first('class1');
-        $categorys = Item::where('class11','=',$class11)->groupBy('class2')->pluck('class2');
-        $class2 = $request->category;
-        $class21 = Item::where('class2',$class2)->groupBy('class21')->first('class21');
-
-
         $this->validate($request, [
             'maker' => 'required',
             'name' => 'required',
             'JAN' => 'required','digits_between:8,13','alpha_num_half',
-            'class1' =>'required',
+            'main_category' =>'required',
+            'sub_category' =>'required',
             'category' =>'required',
             'feature' => 'required',
          ],
@@ -77,38 +114,68 @@ class ItemController extends Controller
             'maker.required' => 'メーカー名は必須です。',
             'name.required'  => '商品名は必須項目です。',
             'JAN.required' => 'JANコードは必須です。',
-            'class1.required'  => 'カテゴリーは必須項目です。',
-            'category.required' => 'カテゴリーは必須です。',
+            'main_category.required'  => 'カテゴリー大分類は必須項目です。',
+            'sub_category.required'  => 'カテゴリー中分類は必須項目です。',
+            'category.required' => 'カテゴリー小分類は必須です。',
             'feature.required'  => '商品詳細は必須項目です。',
          ]);
         
         $input = $request->only($this->formItems);
         $request->session()->put("form_input", $input);
 
-        return redirect()->action("SampleFormController@confirm");
+        return redirect()->route('confirm',["input" => $input]);
 
-        return view('item.confirm',[
-            'categorys'=>$categorys,
-       ]);
     }
 
-    // public function authorize(Request $request)
-    // {
-        
-    //      Item::create([
-    //         'maker' => $request->maker,
-    //         'name' => $request->name,
-    //         'JAN' => $request->JAN,
-    //         'class1' =>$class1->class1,
-    //         'class2' =>$class2,
-    //         'feature' => $request->feature,
-    //         'class11'=>$class11,
-    //         'class21'=>$class21->class21,
-    //     ]);
+    public function confirm(Request $request)
+    {
+        $input = $request->session()->get("form_input");
+		
+		//セッションに値が無い時はフォームに戻る
+		if(!$input){
+            $main_category_id = $request->main_category;
+            $main_categories = Main_category::all();
+            $sub_categories = Sub_category::where('main_category_id', $main_category_id);
+            $categories = Category::where('sub_category_id',$main_category_id);
 
-    //     return view('item.add',[
-    //         'categorys'=>$categorys,
-    //    ]);
-    // }
+			return redirect()->route('add',[
+                'main_categories' => $main_categories,
+                'sub_categories'=>$sub_categories,
+                'categories'=>$categories,
+            ]);
+		}
+
+		return view("item.confirm",["input" => $input]);
+    }
+
+    function send(Request $request){
+		//セッションから値を取り出す
+		$input = $request->session()->get("form_input");
+		
+		//セッションに値が無い時はフォームに戻る
+		if(!$input){
+            $main_category_id = $request->main_category;
+            $main_categories = Main_category::all();
+            $sub_categories = Sub_category::where('main_category_id', $main_category_id);
+            $categories = Category::where('sub_category_id',$main_category_id);
+
+			return redirect()->route('add',[
+                'main_categories' => $main_categories,
+                'sub_categories'=>$sub_categories,
+                'categories'=>$categories,
+            ]);
+		}
+
+		//ここでメールを送信するなどを行う
+
+		//セッションを空にする
+		$request->session()->forget("form_input");
+
+		return redirect()->route('complete',["input" => $input]);
+	}
+
+    function complete(){	
+		return view("item.complete");
+	}
 
 }

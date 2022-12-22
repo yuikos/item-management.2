@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="card card-primary">
-                <form action="{{url('items/authorize')}}" method="post">
+                <form action="{{url('items/agreement')}}" method="post">
                     <table class="table">
                         <tbody>
                                 <tr>

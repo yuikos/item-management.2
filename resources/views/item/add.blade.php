@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="card card-primary">
-                <form action="{{url('items/confirm')}}" method="post">
+                <form action="{{url('items/post')}}" method="post">
                     @csrf
                     @if (count($errors) > 0)
                         <div>
@@ -41,20 +41,29 @@
                         <div class="form-group">
                             <label for="main_category">カテゴリー大分類</label>
                             <select class="form-control" id="main_category" name='main_category' onChange="picksub_category();">
-                                <option value='1'>常温</option>
-                                <option value='2'>低温</option>
-                                <option value='3'>酒類</option>
-                                <option value='4'>菓子</option>
+                                @foreach($main_categories as $main_category)
+                                    <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="sub_category">カテゴリー中分類</label>
-                            <select class="form-control" id="sub_category"  name="sub_category">
+                            <select class="form-control" id="sub_category"  name="sub_category" onChange="pickcategory();">
                                 <option value="">中分類を選んでください</option>
-                                    @foreach($sub_categories as $sub_category)
-                                        <option value="{{ $sub_category }}">{{ $sub_category }}</option>
-                                    @endforeach
+                                @foreach($sub_categories as $sub_category)
+                                    <option value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sub_category">カテゴリー小分類</label>
+                            <select class="form-control" id="category"  name="category">
+                                <option value="">小分類を選んでください</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 

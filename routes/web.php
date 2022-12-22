@@ -36,8 +36,11 @@ Route::get('/rank/keyword', [App\Http\Controllers\RankController::class, 'keywor
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index']);
 
 Route::prefix('items')->group(function () {
-    Route::any('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    Route::any('/confirm', [App\Http\Controllers\ItemController::class, 'confirm']);
-    Route::any('/authorize', [App\Http\Controllers\ItemController::class, 'authorize']);
+    Route::any('/home', [App\Http\Controllers\ItemController::class, 'index']);
+    Route::any('/add', [App\Http\Controllers\ItemController::class, 'add'])->name("add");
+    Route::any('/post', [App\Http\Controllers\ItemController::class, 'post'])->name("post");
+    Route::any('/confirm', [App\Http\Controllers\ItemController::class, 'confirm'])->name("confirm");
+    Route::any('/send', [App\Http\Controllers\ItemController::class, 'send'])->name("send");
+    Route::any('/complete', [App\Http\Controllers\ItemController::class, 'complete'])->name("complete");
 });
 
