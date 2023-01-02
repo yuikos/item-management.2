@@ -97,7 +97,7 @@ class ItemController extends Controller
      * 商品情報確認
      */
     
-    private $formItems = ["maker", "name","JAN","main_category","sub_category","category", "feature"];
+    private $formItems = ["maker", "name","JAN","main_category","sub_category","category_id", "feature"];
 
     public function post(Request $request)
     {
@@ -107,7 +107,7 @@ class ItemController extends Controller
             'JAN' => 'required','digits_between:8,13','alpha_num_half',
             'main_category' =>'required',
             'sub_category' =>'required',
-            'category' =>'required',
+            'category_id' =>'required',
             'feature' => 'required',
          ],
          [
@@ -116,7 +116,7 @@ class ItemController extends Controller
             'JAN.required' => 'JANコードは必須です。',
             'main_category.required'  => 'カテゴリー大分類は必須項目です。',
             'sub_category.required'  => 'カテゴリー中分類は必須項目です。',
-            'category.required' => 'カテゴリー小分類は必須です。',
+            'category_id.required' => 'カテゴリー小分類は必須です。',
             'feature.required'  => '商品詳細は必須項目です。',
          ]);
         
@@ -151,31 +151,31 @@ class ItemController extends Controller
     function send(Request $request){
 		//セッションから値を取り出す
 		$input = $request->session()->get("form_input");
-		
-		//セッションに値が無い時はフォームに戻る
-		if(!$input){
-            $main_category_id = $request->main_category;
-            $main_categories = Main_category::all();
-            $sub_categories = Sub_category::where('main_category_id', $main_category_id);
-            $categories = Category::where('sub_category_id',$main_category_id);
+
+        $item = new Item();
+        $item->maker = $input["maker"];
+        $item->name = $input["name"];
+        $item->JAN = $input["JAN"];
+        $item->feature = $input["feature"];
+        $item->category_id = $input["category_id"];
+        $item->save();
+        
+        $main_category_id = $request->main_category;
+        $main_categories = Main_category::all();
+        $sub_categories = Sub_category::where('main_category_id', $main_category_id);
+        $categories = Category::where('sub_category_id',$main_category_id);
 
 			return redirect()->route('add',[
                 'main_categories' => $main_categories,
                 'sub_categories'=>$sub_categories,
                 'categories'=>$categories,
             ]);
-		}
-
-		//ここでメールを送信するなどを行う
-
-		//セッションを空にする
-		$request->session()->forget("form_input");
-
-		return redirect()->route('complete',["input" => $input]);
+		
 	}
 
     function complete(){	
 		return view("item.complete");
 	}
 
+    
 }

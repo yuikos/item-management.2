@@ -58,8 +58,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="sub_category">カテゴリー小分類</label>
-                            <select class="form-control" id="category"  name="category">
+                            <label for="category_id">カテゴリー小分類</label>
+                            <select class="form-control" id="category_id"  name="category_id">
                                 <option value="">小分類を選んでください</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>

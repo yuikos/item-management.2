@@ -44,9 +44,9 @@
                     </div>
 
                     <div class="md-form">
-                        <label for="category">カテゴリー小分類</label>
-                        {{ $input["category"] }}
-                        <input class="form-control" type="hidden" id="category" name="password" required value="{{ $input["category"] }}">
+                        <label for="category_id">カテゴリー小分類</label>
+                        {{ $input["category_id"] }}
+                        <input class="form-control" type="hidden" id="category_id" name="password" required value="{{ $input["category_id"] }}">
                     </div>
 
                     <div class="md-form">
