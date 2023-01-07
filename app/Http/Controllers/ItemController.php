@@ -97,7 +97,7 @@ class ItemController extends Controller
      * 商品情報確認
      */
     
-    private $formItems = ["maker", "name","JAN","main_category","sub_category","category_id", "feature"];
+    private $formItems = ["maker", "name","JAN","main_category","sub_category","category", "feature"];
 
     public function post(Request $request)
     {
@@ -107,7 +107,7 @@ class ItemController extends Controller
             'JAN' => 'required','digits_between:8,13','alpha_num_half',
             'main_category' =>'required',
             'sub_category' =>'required',
-            'category_id' =>'required',
+            'category' =>'required',
             'feature' => 'required',
          ],
          [
@@ -116,7 +116,7 @@ class ItemController extends Controller
             'JAN.required' => 'JANコードは必須です。',
             'main_category.required'  => 'カテゴリー大分類は必須項目です。',
             'sub_category.required'  => 'カテゴリー中分類は必須項目です。',
-            'category_id.required' => 'カテゴリー小分類は必須です。',
+            'category.required' => 'カテゴリー小分類は必須です。',
             'feature.required'  => '商品詳細は必須項目です。',
          ]);
         

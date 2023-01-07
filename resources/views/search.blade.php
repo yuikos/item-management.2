@@ -16,19 +16,19 @@
                     <form action="{{ url('/search') }}" class="form-horizontal find" method="get"  class="form-horizontal">
                         @csrf
                         <select id="main_category" name='main_category' class="form-control" onChange="picksub_category();">
-                            <option value=''>カテゴリー大分類を選んでください</option>
+                            <option value=''>大分類を選んでください</option>
                             @foreach($main_categories as $main_category)
                                 <option value="{{ $main_category->id }}">{{ $main_category->name }}</option>
                             @endforeach
                          </select>
                         <select id="sub_category" name="sub_category" class="form-control" onChange="pickcategory();">
-                           <option value="">カテゴリー中分類を選んでください</option>
+                           <option value="">中分類を選んでください</option>
                             @foreach($sub_categories as $sub_category)
                                 <option value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
                             @endforeach
                         </select>
                         <select id="category" name="category" class="form-control">
-                            <option value="">カテゴリー小分類を選んでください</option>
+                            <option value="">小分類を選んでください</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -71,3 +71,4 @@
 
 @section('js')
     <script src="js/search.js"></script>
+@endsection

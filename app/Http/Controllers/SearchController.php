@@ -19,10 +19,11 @@ class SearchController extends Controller
         $main_category_id = $request->main_category;
         $main_categories = Main_category::all();
         $sub_categories = Sub_category::where('main_category_id', $main_category_id);
+        $sub_category_id = $request->sub_category;
         $categories = Category::where('sub_category_id',$main_category_id);
         $category_id = $request->category;
         $search_word = $request->key;
-
+        
         if (!empty($search_word))
         {
             $items = Item::where('category_id','=',$category_id)
@@ -33,8 +34,7 @@ class SearchController extends Controller
             $keyword->user_id = Auth::id();
             $keyword->save();
 
-        }
-        elseif(empty($search_word) and isset($category_id))
+        }elseif(empty($search_word) and isset($category_id))
         {
             $items = Item::where('category_id','=',$category_id)
                     ->get();
@@ -55,6 +55,7 @@ class SearchController extends Controller
             'items'=>$items,
         ]);
     }
+
 
     public function ajax_main(Request $request)
     {

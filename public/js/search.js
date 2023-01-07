@@ -45,14 +45,14 @@ function pickcategory()
     }).done(function(data){
         //非同期通信に成功したときに行いたい処理
         //元からあるselectのoptionを削除
-        let select = document.getElementById('category_id');
+        let select = document.getElementById('category');
         let options = select.options
         for(let i = options.length -1; 0 <= i; --i ){
             select.remove(i);
         }
         //laravel内で処理された結果がdataに入って返ってくる
         for(let i in data){
-            $("#category_id").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
+            $("#category").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
         }
     }).fail(function(){
          //失敗した時の処理
