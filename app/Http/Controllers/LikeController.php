@@ -16,10 +16,18 @@ class LikeController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        
         $item = Item::find($item_id);
 
-        return redirect()->route('class',['category_id' => $item->category_id]);
+        $like_number = Like::getCountLike($item_id);
+        $user_like = Like::where('item_id',$item_id)
+                    ->where('user_id', Auth::id())
+                    ->first();
+
+        return view('item.detail',[
+            'item' => $item,
+            'like_number'=>$like_number,
+            'user_like'=>$user_like,
+        ]);
     }
 
     public function unlike($item_id)
@@ -27,11 +35,21 @@ class LikeController extends Controller
         $like = Like::where('item_id',$item_id)
                 ->where('user_id', Auth::id())
                 ->first();
+            
 
         $like->delete();
 
         $item = Item::find($item_id);
 
-        return redirect()->route('class',['category_id' => $item->category_id]);
+        $like_number = Like::getCountLike($item_id);
+        $user_like = Like::where('item_id',$item_id)
+                    ->where('user_id', Auth::id())
+                    ->first();
+
+        return view('item.detail',[
+            'item' => $item,
+            'like_number'=>$like_number,
+            'user_like'=>$user_like,
+        ]);
     }
 }
